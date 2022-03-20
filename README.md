@@ -44,6 +44,8 @@ How to install
 Currently, there is no ``RPM``, ``DEB``, ``APP`` or ``MSI`` packages. 
 To test the code you can either run it directly from the source or install it as a ``sdist`` package.  To do this: 
 
+
+## Local install
 Prequisties:
 * Assorted C/C++ builder tools
 * dbus-1
@@ -56,7 +58,7 @@ Please install these from your package manager.
 
 ```shell
 # Brew on Macs
-brew install pkg-config dbus glib gtk+3
+brew install pkg-config dbus glib gtk+3 libxxf86vm
 
 # Debian installs
 apt-get install build-essential dbus libglib2.0-dev pkg-config libgtkd-3-dev libxxf86vm-dev
@@ -73,10 +75,30 @@ This should install the code as an ``sdist``. To run the UI:
 
 ```shell
 displaycal
+
+# Alt:
+scripts/displaycal
 ```
 
-You may need browse to the ``bin`` folder of you ``python`` interpreter. I used a
+You may need to browse to the ``bin`` folder of you ``python`` interpreter. I used a
 ``virtualenv`` through ``PyCharm`` to develop and test the code.
+
+## Docker install
+We have now added a Docker image to the repository for a shared development environment across the project
+
+OSX only: If you intend to try to use the Docker image, please see 
+[these instructions](http://mamykin.com/posts/running-x-apps-on-mac-with-docker/) 
+because you'll need an X server.  Test them with `make xquartz-test` and some Googly eyes should start following your mouse.  
+
+
+```shell
+make docker-build
+make docker-run
+
+# I want a shell for debugging instead
+make docker-sh
+scripts/displaycal  # In the docker container
+````
 
 ATTENTION!
 ----------
